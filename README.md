@@ -50,6 +50,7 @@ print(response.content)
 
 ```python
 from neo4j_litellm import LiteLLMInterface, ChatHistory
+from typing import List
 
 llm = LiteLLMInterface(
     provider="openai",
@@ -168,7 +169,48 @@ Refer to the [LiteLLM documentation](https://docs.litellm.ai/docs/providers) for
 
 ## Integration with Neo4j GraphRAG
 
-This package implements the `LLMInterface` from `neo4j_graphrag`, making it compatible with Neo4j's Graph RAG framework for building knowledge graph-powered retrieval-augmented generation applications.
+This package implements the `LLMInterface` from `neo4j_graphrag`, making it compatible with Neo4j's Graph RAG framework for building knowledge graph-powered retrieval-augmented generation applications. Here's an example of how to use it with the `SimpleKGPipeline` knowledge graph builder pipeline:
+
+```python
+from neo4j import GraphDatabase
+from neo4j_graphrag.retrievers import VectorRetriever
+from neo4j_litellm import LiteLLMInterface
+from neo4j_graphrag.generation import GraphRAG
+from neo4j_graphrag.embeddings import OpenAIEmbeddings
+
+# 1. Neo4j driver
+URI = "neo4j://:7687"
+AUTH = ("neo4j", "password")
+
+INDEX_NAME = "index-name"
+
+# Connect to Neo4j database
+driver = GraphDatabase.driver(URI, auth=AUTH)
+
+# 2. Retriever
+# Create Embedder object, needed to convert the user question (text) to a vector
+embedder = OpenAIEmbeddings(model="text-embedding-3-large")
+
+# Initialize the retriever
+retriever = VectorRetriever(driver, INDEX_NAME, embedder)
+
+# 3. LLM
+# Note: the OPENAI_API_KEY must be in the env vars
+llm = LiteLLMInterface(
+    provider="openai",
+    model_name="gpt-3.5-turbo",
+    base_url="https://api.openai.com/v1",
+    api_key="your-api-key-here"
+)
+
+# Initialize the RAG pipeline
+rag = GraphRAG(retriever=retriever, llm=llm)
+
+# Query the graph
+query_text = "How do I do similarity search in Neo4j?"
+response = rag.search(query_text=query_text, retriever_config={"top_k": 5})
+print(response.answer)
+```
 
 ## License
 

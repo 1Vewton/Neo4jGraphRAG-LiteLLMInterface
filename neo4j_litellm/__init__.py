@@ -1,7 +1,7 @@
 from typing import Optional, List
 from litellm import completion, acompletion
 from neo4j_graphrag.llm import LLMInterface, LLMResponse
-from data_module import ChatHistory
+from neo4j_litellm.data_module import ChatHistory
 import logging
 
 '''
