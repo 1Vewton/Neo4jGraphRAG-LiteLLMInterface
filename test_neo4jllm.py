@@ -1,9 +1,8 @@
 import unittest
 from unittest.mock import patch, MagicMock, AsyncMock
 import sys
-sys.path.append("..")
-from neo4j_litellm import LiteLLMInterface, ChatHistory
 from neo4j_graphrag.llm import LLMResponse
+from neo4j_litellm import LiteLLMInterface, ChatHistory
 
 
 class TestLiteLLMInterface(unittest.TestCase):
