@@ -195,7 +195,6 @@ embedder = OpenAIEmbeddings(model="text-embedding-3-large")
 retriever = VectorRetriever(driver, INDEX_NAME, embedder)
 
 # 3. LLM
-# Note: the OPENAI_API_KEY must be in the env vars
 llm = LiteLLMInterface(
     provider="openai",
     model_name="gpt-3.5-turbo",
