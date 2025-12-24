@@ -29,7 +29,9 @@ class LiteLLMInterface(LLMInterface):
         input: str,
         message_history: Optional[List[ChatHistory]] = None,
         system_instruction: Optional[str] = None,
+        timeout: int = 5
     ) -> LLMResponse:
+        logging.info(f"get message{input}")
         # messages
         message = []
         # add chat message if message_history exist
@@ -50,7 +52,7 @@ class LiteLLMInterface(LLMInterface):
         })
         # LLM request
         logger.info("Requesting the LLM")
-        response = completion(model=f"{self.provider}/{self.model_name}", messages=message, api_key=self.api_key, api_base=self.base_url, timeout=5)
+        response = completion(model=f"{self.provider}/{self.model_name}", messages=message, api_key=self.api_key, api_base=self.base_url, timeout=timeout)
         result = response.choices[0].message.content
         return LLMResponse(
             content=result
@@ -61,10 +63,12 @@ class LiteLLMInterface(LLMInterface):
         input: str,
         message_history: Optional[List[ChatHistory]] = None,
         system_instruction: Optional[str] = None,
+        timeout:int = 5
     ) -> LLMResponse:
         '''
         Same as above
         '''
+        logging.info(f"get message{input}")
         # messages
         message = []
         # add chat message if message_history exist
@@ -86,7 +90,7 @@ class LiteLLMInterface(LLMInterface):
         # LLM request
         logger.info("Requesting the LLM")
         response = await acompletion(model=f"{self.provider}/{self.model_name}", messages=message, api_key=self.api_key,
-                              api_base=self.base_url, timeout=5)
+                              api_base=self.base_url, timeout=timeout)
         result = response.choices[0].message.content
         return LLMResponse(
             content=result

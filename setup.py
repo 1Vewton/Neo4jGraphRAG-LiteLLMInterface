@@ -4,7 +4,7 @@ with open("README.rst", "r", encoding="utf-8") as f:
   long_description = f.read()
 
 setuptools.setup(name='neo4j_litellm',  # package name
-      version='0.0.4',  # version
+      version='0.0.5',  # version
       description='A LiteLLM LLM component for Neo4j graph RAG. ',
       long_description=long_description,
       author='1Vewton.zh-n',

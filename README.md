@@ -128,16 +128,17 @@ LiteLLMInterface(provider: str, model_name: str, base_url: str, api_key: str)
 
 #### Methods
 
-**invoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None) -> LLMResponse**
+**invoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None, timeout:int = 5) -> LLMResponse**
 
 Synchronous method to invoke the LLM.
 
 - `input`: User input text
 - `message_history`: Optional list of chat history messages
 - `system_instruction`: Optional system prompt
+- `timeout`: The tiemout value for the request
 - Returns: `LLMResponse` object with `content` field
 
-**ainvoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None) -> LLMResponse**
+**ainvoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None, timeout:int = 5) -> LLMResponse**
 
 Asynchronous method to invoke the LLM.
 
