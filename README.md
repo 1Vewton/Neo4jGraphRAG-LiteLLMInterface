@@ -118,27 +118,27 @@ asyncio.run(main())
 #### Constructor
 
 ```python
-LiteLLMInterface(provider: str, model_name: str, base_url: str, api_key: str)
+LiteLLMInterface(provider: str, model_name: str, base_url: str, api_key: str, timeout:int = 5)
 ```
 
 - `provider`: LLM provider name (e.g., "openai", "anthropic", "azure", etc.)
 - `model_name`: Specific model name (e.g., "gpt-3.5-turbo", "claude-3-sonnet")
 - `base_url`: API endpoint URL
 - `api_key`: Authentication API key
+- `tiemout`: The timeout value for the request to the LLM. 
 
 #### Methods
 
-**invoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None, timeout:int = 5) -> LLMResponse**
+**invoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None) -> LLMResponse**
 
 Synchronous method to invoke the LLM.
 
 - `input`: User input text
 - `message_history`: Optional list of chat history messages
 - `system_instruction`: Optional system prompt
-- `timeout`: The tiemout value for the request
 - Returns: `LLMResponse` object with `content` field
 
-**ainvoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None, timeout:int = 5) -> LLMResponse**
+**ainvoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None) -> LLMResponse**
 
 Asynchronous method to invoke the LLM.
 

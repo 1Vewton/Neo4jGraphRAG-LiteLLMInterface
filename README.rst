@@ -138,21 +138,21 @@ Constructor
 - ``model_name``: Specific model name (e.g., "gpt-3.5-turbo", "claude-3-sonnet")
 - ``base_url``: API endpoint URL
 - ``api_key``: Authentication API key
+- ``timeout``: The timeout value for the request to the llm.
 
 Methods
 ^^^^^^^
 
-**invoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None, timeout:int = 5) -> LLMResponse**
+**invoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None) -> LLMResponse**
 
 Synchronous method to invoke the LLM.
 
 - ``input``: User input text
 - ``message_history``: Optional list of chat history messages
 - ``system_instruction``: Optional system prompt
-- ``timeout``: Value of timeout for the request to the llm.
 - Returns: ``LLMResponse`` object with ``content`` field
 
-**ainvoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None, timeout:int = 5) -> LLMResponse**
+**ainvoke(input: str, message_history: Optional[List[ChatHistory]] = None, system_instruction: Optional[str] = None) -> LLMResponse**
 
 Asynchronous method to invoke the LLM.
 
