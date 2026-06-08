@@ -1,5 +1,7 @@
 # Neo4j-LiteLLM
 
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/neo4j-litellm?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/neo4j-litellm)
+
 A LiteLLM LLM component for Neo4j Graph RAG (Retrieval-Augmented Generation) system.
 
 ## Overview
